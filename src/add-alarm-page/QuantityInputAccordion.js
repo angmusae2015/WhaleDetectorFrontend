@@ -53,7 +53,7 @@ QuantityInputAccordion.defaultProps = {
   alarmType: "",
   itemInfo: {},
   setQuantity: (quantity) => {}
-}
+};
 
 /**
  * @typedef { Object } InputProps
@@ -112,6 +112,6 @@ QuantityInput.defaultProps = {
   alarmType: "",
   itemInfo: {},
   setQuantity: (quantity) => {}
-}
+};
 
 export default QuantityInputAccordion;

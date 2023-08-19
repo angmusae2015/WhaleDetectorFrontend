@@ -5,11 +5,11 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-import ChatTypeSelectAccordion from './ChatTypeSelector';
-import ChannelSelectAccordion from './ChannelSelector';
-import AlarmTypeSelectAccordion from './AlarmTypeSelector';
-import ItemSelectAccordion from './ItemSelector';
-import QuantityInputAccordion from './QuantityInput';
+import ChatTypeSelectAccordion from './ChatTypeSelectAccordion';
+import ChannelSelectAccordion from './ChannelSelectAccordion';
+import AlarmTypeSelectAccordion from './AlarmTypeSelectAccordion';
+import ItemSelectAccordion from './ItemSelectAccordion';
+import QuantityInputAccordion from './QuantityInputAccordion';
 
 function AddAlarmPage() {
   // 채팅 및 알림 관련 상태 초기화
@@ -80,12 +80,6 @@ function AddAlarmPage() {
       setDisableQuantityInputAccordion(false);
     }
   }, [itemInfo]);
-
-  useEffect(() => {
-    if (quantity !== null) {
-      console.log(quantity);
-    }
-  }, [quantity]);
 
   // 아코디언 패널이 접히거나 열릴 때 실행되는 함수
   const handleChange = (panel) => (event, isExpanded) => {
