@@ -2,7 +2,7 @@ import axios from 'axios';
 
 function getInfoFunction(endpoint, setState) {
   return (() => {
-    axios.get(`http://34.64.36.211:5000${endpoint}`)
+    axios.get(`https://whaledetectorapi.kro.kr${endpoint}`)
       .then(response => {
         setState(response.data[Object.keys(response.data)]);
       })
