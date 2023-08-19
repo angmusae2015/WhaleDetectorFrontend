@@ -14,6 +14,7 @@ import Radio from '@mui/material/Radio'
 /**
  * @typedef { Object } AccordionProps
  * @property { Object } accordionProps
+ * @property { string } alarmType
  * @property { function(string) } setAlarmType
  */
 
@@ -21,7 +22,7 @@ import Radio from '@mui/material/Radio'
  * @param { AccordionProps } props
  */
 function AlarmTypeSelectAccordion(props) {
-  const { accordionProps, setAlarmType } = props;
+  const { accordionProps, alarmType, setAlarmType } = props;
 
   return (
     <Accordion {...accordionProps}>
@@ -30,7 +31,9 @@ function AlarmTypeSelectAccordion(props) {
         id="panel1a-header"
         expandIcon={<ExpandMoreIcon />}
       >
-        <Typography>알림 유형</Typography>
+        <Typography>
+          {"알림 유형" + (!accordionProps.expanded ? `${alarmType === "TickAlarm" ? ": 체결량 알림" : ": 고래 알림"}` : "")}
+        </Typography>
       </AccordionSummary>
       <AccordionDetails>
         <AlarmTypeSelector setAlarmType={setAlarmType} />

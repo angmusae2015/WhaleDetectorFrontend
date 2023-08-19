@@ -121,6 +121,7 @@ function AddAlarmPage() {
           expanded: expanded === 'panel3',
           onChange: handleChange('panel3')
         }}
+        alarmType={alarmType}
         setAlarmType={setAlarmType} />
       <ItemSelectAccordion
         accordionProps={{
