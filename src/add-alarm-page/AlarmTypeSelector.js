@@ -32,7 +32,7 @@ function AlarmTypeSelectAccordion(props) {
         expandIcon={<ExpandMoreIcon />}
       >
         <Typography>
-          {"알림 유형" + (!accordionProps.expanded ? `${alarmType === "TickAlarm" ? ": 체결량 알림" : ": 고래 알림"}` : "")}
+          {"알림 유형" + (!accordionProps.expanded && (alarmType !== null)? `${alarmType === "TickAlarm" ? ": 체결량 알림" : ": 고래 알림"}` : "")}
         </Typography>
       </AccordionSummary>
       <AccordionDetails>

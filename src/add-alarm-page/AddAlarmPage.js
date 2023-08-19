@@ -129,6 +129,7 @@ function AddAlarmPage() {
           expanded: expanded === 'panel4',
           onChange: handleChange('panel4')
         }}
+        itemInfo={itemInfo}
         setItemInfo={setItemInfo} />
       <QuantityInputAccordion
         accordionProps={{

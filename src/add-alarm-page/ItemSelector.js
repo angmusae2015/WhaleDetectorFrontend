@@ -17,8 +17,16 @@ import Autocomplete from '@mui/material/Autocomplete';
 import getInfoFunction from '../util/util';
 
 /**
+ * @typedef { Object } itemInfo
+ * @property { number } ExchangeID
+ * @property { string } BaseSymbol
+ * @property { string } QuoteSymbol
+ */
+
+/**
  * @typedef { Object } AccordionProps
  * @property { Object } accordionProps
+ * @property { itemInfo } itemInfo
  * @property { function(Object) } setItemInfo
  */
 
@@ -26,7 +34,7 @@ import getInfoFunction from '../util/util';
  * @param { AccordionProps } props
  */
 function ItemSelectAccordion(props) {
-  const { accordionProps, setItemInfo } = props;
+  const { accordionProps, itemInfo, setItemInfo } = props;
 
   return (
     <Accordion {...accordionProps}>
@@ -35,7 +43,9 @@ function ItemSelectAccordion(props) {
         id="panel1a-header"
         expandIcon={<ExpandMoreIcon />}
       >
-        <Typography>종목</Typography>
+        <Typography>
+          {"종목" + (!accordionProps.expanded && (itemInfo !== null) ? `: ${itemInfo['BaseSymbol']}/${itemInfo['QuoteSymbol']}` : "")}
+        </Typography>
       </AccordionSummary>
       <AccordionDetails>
         <ItemSelector setItemInfo={setItemInfo} />
@@ -77,6 +87,9 @@ function ItemSelector(props) {
     // 이전 거래소의 종목, 시세 화폐 정보 목록 및 자동 완성 컴포넌트 값 초기화
     setCurrencyInfoList([]);
     setItemInfoList([]);
+
+    // 선택한 종목 정보 초기화
+    setItemInfo(null);
     
     // 종목 정보 요청 함수 및 실행
     const endpoint = exchangeInfoList[event.target.value]['ExchangeEndpoint'];
@@ -92,6 +105,9 @@ function ItemSelector(props) {
   const handleCurrencyChange = (object, value) => {
     // 이전 종목의 시세 화폐 정보 목록 및 자동 완성 컴포넌트 값 초기화
     setItemInfoList([]);
+
+    // 선택한 종목 정보 초기화
+    setItemInfo(null);
 
     if (value !== null) {
       // 시세 화페 정보 요청 함수 및 실행
