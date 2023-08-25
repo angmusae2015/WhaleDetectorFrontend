@@ -71,6 +71,9 @@ function ItemSelector(props) {
   // props에서 필요한 변수들을 추출
   const { setItemInfo } = props;
 
+  // 백엔드 서버의 응답을 상태로 관리
+  const [response, setResponse] = useState(null);
+
   // 거래소, 종목, 시세 화폐 정보 목록을 상태로 관리
   const [exchangeInfoList, setExchangeInfoList] = useState([]);
   const [currencyInfoList, setCurrencyInfoList] = useState([]);
@@ -95,7 +98,7 @@ function ItemSelector(props) {
     const endpoint = exchangeInfoList[event.target.value]['ExchangeEndpoint'];
     const getCurrencyInfo = getInfoFunction(
       `${endpoint}/currencylist`,
-      setCurrencyInfoList
+      setResponse
     );
 
     getCurrencyInfo();
@@ -114,7 +117,7 @@ function ItemSelector(props) {
       const endpoint = exchangeInfoList[selectedExchangeIndex]['ExchangeEndpoint'];
       const getItemInfo = getInfoFunction(
         `${endpoint}/itemlist?base_symbol=${value.symbol}`,
-        setItemInfoList
+        setResponse
       );
 
       getItemInfo();
@@ -137,11 +140,31 @@ function ItemSelector(props) {
 
   // 컴포넌트가 처음 마운트될 때 거래소 정보 요청
   useEffect(() => {
-    const getExchangeInfo = getInfoFunction('/database/exchangeinfo', setExchangeInfoList);
+    const getExchangeInfo = getInfoFunction('/database/exchangeinfo', setResponse);
 
     // 정보 요청 함수 실행
     getExchangeInfo();
   }, []);
+
+  // 서버 응답 도착 시 실행되는 효과 함수
+  useEffect(() => {
+    if (response !== null) {
+      if ('exchange_info' in response) {
+        // 거래소 정보 도착 시:
+        setExchangeInfoList(response['exchange_info']);
+      } else if ('currency_info' in response) {
+        // 종목 정보 도착 시:
+        setCurrencyInfoList(response['currency_info']);
+      } else if ('item_info' in response) {
+        // 시세 화폐 정보 도착 시:
+        setItemInfoList(response['item_info']);
+      }
+
+      // 응답 기록 초기화
+      setResponse(null);
+    }
+  }, [response])
+
 /* sx={{ width: 600 }} */
   return (
     <div>

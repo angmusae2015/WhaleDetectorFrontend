@@ -76,7 +76,8 @@ function ChannelSelector(props) {
   // props에서 필요한 변수들을 추출
   const { setChannelInfo, chatID } = props;
 
-  // 채널 정보 목록을 상태로 관리
+  // 백엔드 서버 응답, 채널 정보 목록을 상태로 관리
+  const [response, setResponse] = useState(null);
   const [channelInfoList, setChannelInfoList] = useState([]);
 
   // 선택된 채널이 변경되었을 때 호출되는 이벤트 핸들러
@@ -90,13 +91,23 @@ function ChannelSelector(props) {
     if (chatID !== null) {
       const getChannelInfo = getInfoFunction(
         `/database/channelinfo?chat_id=${chatID}`,
-        setChannelInfoList
+        setResponse
       );
       
       // 정보 요청 함수 실행
       getChannelInfo();
     }
   }, [chatID]);
+
+  // 서버 응답 도착 시 채널 정보 목록 업데이트
+  useEffect(() => {
+    if (response !== null) {
+      setChannelInfoList(response['channel_info']);
+
+      // 응답 기록 초기화
+      setResponse(null);
+    }
+  }, [response]);
   
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }}>
