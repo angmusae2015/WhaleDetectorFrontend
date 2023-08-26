@@ -85,8 +85,6 @@ function PostButton(props) {
       chat_id: chatID
     };
 
-    console.log(params);
-
     setDisableButton(true);
 
     const postChannelFunc = postFunction(endpoint, params, () => {
@@ -94,7 +92,6 @@ function PostButton(props) {
     }, () => {
       setDisableButton(false);
     });
-
     postChannelFunc();    
   }
 

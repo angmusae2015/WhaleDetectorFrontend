@@ -10,6 +10,7 @@ import ChannelSelectAccordion from './ChannelSelectAccordion';
 import AlarmTypeSelectAccordion from './AlarmTypeSelectAccordion';
 import ItemSelectAccordion from './ItemSelectAccordion';
 import QuantityInputAccordion from './QuantityInputAccordion';
+import { postFunction } from '../util/util';
 
 function AddAlarmPage() {
   // 채팅 및 알림 관련 상태 초기화
@@ -172,10 +173,11 @@ function PostButton(props) {
     };
 
     setDisableButton(true);
-    axios.post(endpoint, params)
-      .then(response => {
-        setButtonText("완료!");
-      });
+    
+    const postAlarmFunc = postFunction(endpoint, params, () => {
+      setButtonText("완료!");
+    });
+    postAlarmFunc();
   }
 
   // 올바른 가격 입력 시 알림 설정 버튼 활성화
