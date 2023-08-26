@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -10,6 +9,7 @@ import ChannelSelectAccordion from './ChannelSelectAccordion';
 import AlarmTypeSelectAccordion from './AlarmTypeSelectAccordion';
 import ItemSelectAccordion from './ItemSelectAccordion';
 import QuantityInputAccordion from './QuantityInputAccordion';
+
 import { postFunction } from '../util/util';
 
 function AddAlarmPage() {
