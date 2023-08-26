@@ -164,7 +164,7 @@ function PostButton(props) {
     const endpoint = "/database/alarm/create";
     const params = {
       type: alarmType,
-      chat_id: (isChannel ? channelInfo['ChatID'] : chatID),
+      chat_id: (isChannel ? channelInfo['ChannelID'] : chatID),
       exchange_id: itemInfo['ExchangeID'],
       base_symbol: itemInfo['BaseSymbol'],
       quote_symbol: itemInfo['QuoteSymbol'],
