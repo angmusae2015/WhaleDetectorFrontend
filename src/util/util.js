@@ -2,20 +2,22 @@ import axios from 'axios';
 
 const proxy = "http://34.22.69.145:5000"
 
-function getInfoFunction(endpoint, setState) {
+function getInfoFunction(endpoint, setState, todo=()=>{}, todoOnError=()=>{}) {
   return (() => {
     // axios.get(`https://whaledetectorapi.kro.kr${endpoint}`)
     axios.get(proxy + endpoint)
       .then(response => {
         setState(response.data);
+        todo();
       })
       .catch(error => {
         console.error('API 요청 에러:', error);
+        todoOnError();
       });
   })
 }
 
-function postFunction(endpoint, params, todo, todoOnError) {
+function postFunction(endpoint, params, todo=()=>{}, todoOnError=()=>{}) {
   return (() => {
     console.log(params);
     axios.post(proxy + endpoint, params)
