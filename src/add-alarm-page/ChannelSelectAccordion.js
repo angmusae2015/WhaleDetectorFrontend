@@ -11,7 +11,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-import getInfoFunction from '../util/util';
+import { getInfoFunction } from '../util/util';
 
 /**
  * @typedef { Object } channelInfo

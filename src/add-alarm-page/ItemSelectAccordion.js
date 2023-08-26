@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-import getInfoFunction from '../util/util';
+import { getInfoFunction } from '../util/util';
 
 /**
  * @typedef { Object } itemInfo
