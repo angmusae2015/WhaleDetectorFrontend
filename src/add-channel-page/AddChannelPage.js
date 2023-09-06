@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
