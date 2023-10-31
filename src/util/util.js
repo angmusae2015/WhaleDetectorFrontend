@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // const proxy = "https://whaledetectorapi.kro.kr";
-const proxy = "http://34.22.69.145:5000";
+const proxy = "http://35.216.71.169:5000";
 
-function get(endpoint, todo=(response)=>{}, todoOnError=(error)=>{}) {
+/* function get(endpoint, todo=(response)=>{}, todoOnError=(error)=>{}) {
   axios.get(proxy + endpoint)
     .then(response => {
       todo(response);
@@ -12,44 +12,16 @@ function get(endpoint, todo=(response)=>{}, todoOnError=(error)=>{}) {
       console.error('API 요청 에러:', error);
       todoOnError(error);
     });
+} */
+
+export function get(endpoint, params={}) {
+  return axios.get(proxy + endpoint, params);
 }
 
-function getInfoFunction(endpoint, setState, todo=()=>{}, todoOnError=()=>{}) {
-  return (() => {
-    axios.get(proxy + endpoint)
-      .then(response => {
-        setState(response.data);
-        todo();
-      })
-      .catch(error => {
-        console.error('API 요청 에러:', error);
-        todoOnError();
-      });
-  })
+export function post(endpoint, params={}) {
+  return axios.post(proxy + endpoint, params);
 }
 
-function postFunction(endpoint, params, todo=()=>{}, todoOnError=()=>{}) {
-  return (() => {
-    axios.post(proxy + endpoint, params)
-      .then(response => {
-        todo();
-      })
-      .catch(error => {
-        console.error('POST 요청 에러:', error);
-        todoOnError();
-      });
-  })
+export function patch(endpoint, params={}) {
+  return axios.patch(proxy + endpoint, params);
 }
-
-function post(endpoint, params, todo=(response)=>{}, todoOnError=(error)=>{}) {
-  axios.post(proxy + endpoint, params)
-    .then(response => {
-      todo(response);
-    })
-    .catch(error => {
-      console.error('POST 요청 에러: ', error);
-      todoOnError(error);
-    });
-}
-
-export { getInfoFunction, postFunction, post, get };
