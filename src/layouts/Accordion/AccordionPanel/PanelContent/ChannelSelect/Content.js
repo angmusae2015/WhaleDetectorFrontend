@@ -40,6 +40,8 @@ function ChannelSelectPanelContent(props) {
     setValue(selectedChannel);
   };
   useEffect(onChannelSelect, [selectedChannel]);
+
+  return channelSelect;
 }
 
 ChannelSelectPanelContent.defaultValue = {
