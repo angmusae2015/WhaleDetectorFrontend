@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const proxy = "https://whaledetectorapi.kro.kr";
-const proxy = "//34.64.230.101";
+const proxy = "https://whaledetectorapi.kro.kr";
+// const proxy = "//34.64.230.101";
 
 export function get(endpoint, params={}) {
   return axios.get(proxy + endpoint, params);
