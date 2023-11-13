@@ -1,18 +1,7 @@
 import axios from 'axios';
 
-const proxy = "https://whaledetectorapi.kro.kr";
-// const proxy = "http://35.216.71.169:5000";
-
-/* function get(endpoint, todo=(response)=>{}, todoOnError=(error)=>{}) {
-  axios.get(proxy + endpoint)
-    .then(response => {
-      todo(response);
-    })
-    .catch(error => {
-      console.error('API 요청 에러:', error);
-      todoOnError(error);
-    });
-} */
+// const proxy = "https://whaledetectorapi.kro.kr";
+const proxy = "http://34.64.230.101";
 
 export function get(endpoint, params={}) {
   return axios.get(proxy + endpoint, params);
